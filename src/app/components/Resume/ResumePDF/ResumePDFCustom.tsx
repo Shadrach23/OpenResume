@@ -11,20 +11,34 @@ export const ResumePDFCustom = ({
   custom,
   themeColor,
   showBulletPoints,
+  sectionAlign = 'left',
 }: {
   heading: string;
   custom: ResumeCustom;
   themeColor: string;
   showBulletPoints: boolean;
+  sectionAlign?: 'left' | 'center' | 'right';
 }) => {
   const { descriptions } = custom;
 
   return (
-    <ResumePDFSection themeColor={themeColor} heading={heading}>
+    <ResumePDFSection
+      themeColor={themeColor}
+      heading={heading}
+      style={{
+        alignItems:
+          sectionAlign === 'center'
+            ? 'center'
+            : sectionAlign === 'right'
+            ? 'flex-end'
+            : 'flex-start',
+      }}
+    >
       <View style={{ ...styles.flexCol }}>
         <ResumePDFBulletList
           items={descriptions}
           showBulletPoints={showBulletPoints}
+          textAlign={sectionAlign}
         />
       </View>
     </ResumePDFSection>

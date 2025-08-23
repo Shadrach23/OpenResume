@@ -73,7 +73,7 @@ const QAS = [
     answer: (
       <p>
         OpenResume was created by{" "}
-        <Link href="https://github.com/xpatcher69">Selase Arku</Link>
+        <Link href="https://github.com/Shadrach23">Shadrach Martin Kwofie</Link>
       </p>
     ),
   },

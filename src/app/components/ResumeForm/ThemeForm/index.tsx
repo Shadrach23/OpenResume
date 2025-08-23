@@ -1,6 +1,6 @@
 import { BaseForm } from "components/ResumeForm/Form";
 import { InputGroupWrapper } from "components/ResumeForm/Form/InputGroup";
-import { THEME_COLORS } from "components/ResumeForm/ThemeForm/constants";
+import { THEME_COLORS, THEME_COLOR_CLASSES } from "components/ResumeForm/ThemeForm/constants";
 import { InlineInput } from "components/ResumeForm/ThemeForm/InlineInput";
 import {
   DocumentSizeSelections,
@@ -43,13 +43,11 @@ export const ThemeForm = () => {
             value={settings.themeColor}
             placeholder={DEFAULT_THEME_COLOR}
             onChange={handleSettingsChange}
-            inputStyle={{ color: themeColor }}
           />
           <div className="mt-2 flex flex-wrap gap-2">
             {THEME_COLORS.map((color, idx) => (
               <div
-                className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-md text-sm text-white"
-                style={{ backgroundColor: color }}
+                className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-md text-sm text-white ${THEME_COLOR_CLASSES[idx]}`}
                 key={idx}
                 onClick={() => handleSettingsChange("themeColor", color)}
                 onKeyDown={(e) => {
@@ -93,6 +91,36 @@ export const ThemeForm = () => {
             selectedDocumentSize={documentSize}
             handleSettingsChange={handleSettingsChange}
           />
+        </div>
+        <div>
+          <InputGroupWrapper label="Header Alignment" />
+          <div className="mt-2 flex gap-2">
+            {(['left','center','right'] as const).map((opt) => (
+              <button
+                key={opt}
+                type="button"
+                onClick={() => handleSettingsChange('headerAlign', opt)}
+                className={`px-3 py-1 rounded-md border ${settings.headerAlign === opt ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'}`}
+              >
+                {opt[0].toUpperCase() + opt.slice(1)}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div>
+          <InputGroupWrapper label="Section Alignment" />
+          <div className="mt-2 flex gap-2">
+            {(['left','center','right'] as const).map((opt) => (
+              <button
+                key={opt}
+                type="button"
+                onClick={() => handleSettingsChange('sectionAlign', opt)}
+                className={`px-3 py-1 rounded-md border ${settings.sectionAlign === opt ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'}`}
+              >
+                {opt[0].toUpperCase() + opt.slice(1)}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </BaseForm>

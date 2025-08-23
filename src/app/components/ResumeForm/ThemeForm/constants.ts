@@ -12,3 +12,20 @@ export const THEME_COLORS = [
   "#818cf8", // Indigo-400
   "#6366f1", // Indigo-500
 ];
+
+// Tailwind arbitrary color classes must be literal strings to be preserved by the JIT compiler.
+// Keep this array index-aligned with THEME_COLORS.
+export const THEME_COLOR_CLASSES = [
+  "bg-[#f87171]",
+  "bg-[#ef4444]",
+  "bg-[#fb923c]",
+  "bg-[#f97316]",
+  "bg-[#fbbf24]",
+  "bg-[#f59e0b]",
+  "bg-[#22c55e]",
+  "bg-[#15803d]",
+  "bg-[#38bdf8]",
+  "bg-[#0ea5e9]",
+  "bg-[#818cf8]",
+  "bg-[#6366f1]",
+];

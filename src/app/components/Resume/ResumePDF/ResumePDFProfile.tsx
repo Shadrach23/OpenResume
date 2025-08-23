@@ -15,29 +15,50 @@ export const ResumePDFProfile = ({
   profile,
   themeColor,
   isPDF,
+  headerAlign = 'left',
 }: {
   profile: ResumeProfile;
   themeColor: string;
   isPDF: boolean;
+  headerAlign?: 'left' | 'center' | 'right';
 }) => {
   const { name, email, phone, url, summary, location } = profile;
   const iconProps = { email, phone, location, url };
 
   return (
-    <ResumePDFSection style={{ marginTop: spacing["4"] }}>
+    <ResumePDFSection
+      style={{
+        marginTop: spacing["4"],
+        alignItems:
+          headerAlign === 'center'
+            ? 'center'
+            : headerAlign === 'right'
+            ? 'flex-end'
+            : 'flex-start',
+      }}
+    >
       <ResumePDFText
         bold={true}
         themeColor={themeColor}
-        style={{ fontSize: "20pt" }}
+        style={{ fontSize: "20pt", textAlign: headerAlign as any }}
       >
         {name}
       </ResumePDFText>
-      {summary && <ResumePDFText>{summary}</ResumePDFText>}
+      {summary && (
+        <ResumePDFText style={{ textAlign: headerAlign as any }}>{summary}</ResumePDFText>
+      )}
       <View
         style={{
           ...styles.flexRowBetween,
           flexWrap: "wrap",
           marginTop: spacing["0.5"],
+          width: '100%',
+          justifyContent:
+            headerAlign === 'center'
+              ? 'center'
+              : headerAlign === 'right'
+              ? 'flex-end'
+              : 'flex-start',
         }}
       >
         {Object.entries(iconProps).map(([key, value]) => {
@@ -89,7 +110,7 @@ export const ResumePDFProfile = ({
             >
               <ResumePDFIcon type={iconType} isPDF={isPDF} />
               <Wrapper>
-                <ResumePDFText>{value}</ResumePDFText>
+                <ResumePDFText style={{ textAlign: headerAlign as any }}>{value}</ResumePDFText>
               </Wrapper>
             </View>
           );

@@ -6,6 +6,8 @@ export interface Settings {
   fontFamily: string;
   fontSize: string;
   documentSize: string;
+  headerAlign: 'left' | 'center' | 'right';
+  sectionAlign: 'left' | 'center' | 'right';
   formToShow: {
     workExperiences: boolean;
     educations: boolean;
@@ -46,6 +48,8 @@ export const initialSettings: Settings = {
   fontFamily: DEFAULT_FONT_FAMILY,
   fontSize: DEFAULT_FONT_SIZE,
   documentSize: "Letter",
+  headerAlign: 'left',
+  sectionAlign: 'left',
   formToShow: {
     workExperiences: true,
     educations: true,

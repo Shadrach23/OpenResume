@@ -12,11 +12,13 @@ export const ResumePDFSkills = ({
   skills,
   themeColor,
   showBulletPoints,
+  sectionAlign = 'left',
 }: {
   heading: string;
   skills: ResumeSkills;
   themeColor: string;
   showBulletPoints: boolean;
+  sectionAlign?: 'left' | 'center' | 'right';
 }) => {
   const { descriptions, featuredSkills } = skills;
   const featuredSkillsWithText = featuredSkills.filter((item) => item.skill);
@@ -27,7 +29,18 @@ export const ResumePDFSkills = ({
   ];
 
   return (
-    <ResumePDFSection themeColor={themeColor} heading={heading}>
+    <ResumePDFSection
+      themeColor={themeColor}
+      heading={heading}
+      style={{
+        alignItems:
+          sectionAlign === 'center'
+            ? 'center'
+            : sectionAlign === 'right'
+            ? 'flex-end'
+            : 'flex-start',
+      }}
+    >
       {featuredSkillsWithText.length > 0 && (
         <View style={{ ...styles.flexRowBetween, marginTop: spacing["0.5"] }}>
           {featuredSkillsPair.map((pair, idx) => (
@@ -46,7 +59,12 @@ export const ResumePDFSkills = ({
                     rating={featuredSkill.rating}
                     themeColor={themeColor}
                     style={{
-                      justifyContent: "flex-end",
+                      justifyContent:
+                        sectionAlign === 'center'
+                          ? 'center'
+                          : sectionAlign === 'right'
+                          ? 'flex-end'
+                          : 'flex-start',
                     }}
                   />
                 );
@@ -59,6 +77,7 @@ export const ResumePDFSkills = ({
         <ResumePDFBulletList
           items={descriptions}
           showBulletPoints={showBulletPoints}
+          textAlign={sectionAlign}
         />
       </View>
     </ResumePDFSection>

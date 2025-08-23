@@ -1,7 +1,16 @@
 {
   "name": "open-resume",
   "version": "0.1.0",
+  "author": "Shadrach Martin Kwofie",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shadrach23/OpenResume.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Shadrach23/OpenResume/issues"
+  },
+  "homepage": "https://github.com/Shadrach23/OpenResume#readme",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -19,9 +28,11 @@
     "@types/react-dom": "18.2.4",
     "@vercel/analytics": "^1.0.1",
     "autoprefixer": "10.4.14",
+    "docx": "^9.5.1",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
     "next": "13.4.4",
+    "openai": "^5.12.2",
     "pdfjs": "^2.5.0",
     "pdfjs-dist": "^3.7.107",
     "postcss": "8.4.24",

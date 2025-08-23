@@ -9,13 +9,13 @@ import { deepClone } from "lib/deep-clone";
 
 export const END_HOME_RESUME: Resume = {
   profile: {
-    name: "John Doe",
+    name: "Shadrach Martin Kwofie",
     summary:
       "Software engineer obsessed with building exceptional products that people love",
-    email: "hello@openresume.com",
-    phone: "123-456-7890",
-    location: "NYC, NY",
-    url: "linkedin.com/in/john-doe",
+    email: "selasearku@gmail.com",
+    phone: "233-456-7890",
+    location: "Ghana, Accra",
+    url: "github.com/Shadrach23",
   },
   workExperiences: [
     {

@@ -57,6 +57,7 @@ export const ResumePDF = ({
         heading={formToHeading["workExperiences"]}
         workExperiences={workExperiences}
         themeColor={themeColor}
+        sectionAlign={settings.sectionAlign}
       />
     ),
     educations: () => (
@@ -65,6 +66,7 @@ export const ResumePDF = ({
         educations={educations}
         themeColor={themeColor}
         showBulletPoints={showBulletPoints["educations"]}
+        sectionAlign={settings.sectionAlign}
       />
     ),
     projects: () => (
@@ -72,6 +74,7 @@ export const ResumePDF = ({
         heading={formToHeading["projects"]}
         projects={projects}
         themeColor={themeColor}
+        sectionAlign={settings.sectionAlign}
       />
     ),
     skills: () => (
@@ -80,6 +83,7 @@ export const ResumePDF = ({
         skills={skills}
         themeColor={themeColor}
         showBulletPoints={showBulletPoints["skills"]}
+        sectionAlign={settings.sectionAlign}
       />
     ),
     custom: () => (
@@ -88,6 +92,7 @@ export const ResumePDF = ({
         custom={custom}
         themeColor={themeColor}
         showBulletPoints={showBulletPoints["custom"]}
+        sectionAlign={settings.sectionAlign}
       />
     ),
   };
@@ -117,12 +122,19 @@ export const ResumePDF = ({
             style={{
               ...styles.flexCol,
               padding: `${spacing[0]} ${spacing[20]}`,
+              alignItems:
+                settings.sectionAlign === 'center'
+                  ? 'center'
+                  : settings.sectionAlign === 'right'
+                  ? 'flex-end'
+                  : 'flex-start',
             }}
           >
             <ResumePDFProfile
               profile={profile}
               themeColor={themeColor}
               isPDF={isPDF}
+              headerAlign={settings.headerAlign}
             />
             {showFormsOrder.map((form) => {
               const Component = formTypeToComponent[form];
@@ -134,4 +146,5 @@ export const ResumePDF = ({
       <SuppressResumePDFErrorMessage />
     </>
   );
-};
+}
+;

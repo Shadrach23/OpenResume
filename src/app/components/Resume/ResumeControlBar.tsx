@@ -7,6 +7,10 @@ import {
 } from "@heroicons/react/24/outline";
 import { usePDF } from "@react-pdf/renderer";
 import dynamic from "next/dynamic";
+import { useAppSelector } from "lib/redux/hooks";
+import { selectResume } from "lib/redux/resumeSlice";
+import { selectSettings } from "lib/redux/settingsSlice";
+import { downloadDocx } from "lib/export/docx";
 
 const ResumeControlBar = ({
   scale,
@@ -37,12 +41,16 @@ const ResumeControlBar = ({
     <div className="sticky bottom-0 left-0 right-0 flex h-[var(--resume-control-bar-height)] items-center justify-center px-[var(--resume-padding)] text-gray-600 lg:justify-between">
       <div className="flex items-center gap-2">
         <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
+        <label htmlFor="zoom-range" className="sr-only">Zoom</label>
         <input
+          id="zoom-range"
           type="range"
           min={0.5}
           max={1.5}
           step={0.01}
           value={scale}
+          title="Zoom"
+          aria-label="Zoom"
           onChange={(e) => {
             setScaleOnResize(false);
             setScale(Number(e.target.value));
@@ -59,14 +67,17 @@ const ResumeControlBar = ({
           <span className="select-none">Autoscale</span>
         </label>
       </div>
-      <a
-        className="ml-1 flex items-center gap-1 rounded-md border border-gray-300 px-3 py-0.5 hover:bg-gray-100 lg:ml-8"
-        href={instance.url!}
-        download={fileName}
-      >
-        <ArrowDownTrayIcon className="h-4 w-4" />
-        <span className="whitespace-nowrap">Download Resume</span>
-      </a>
+      <div className="flex items-center gap-2 lg:ml-8">
+        <a
+          className="ml-1 flex items-center gap-1 rounded-md border border-gray-300 px-3 py-1 hover:bg-gray-100"
+          href={instance.url!}
+          download={fileName}
+        >
+          <ArrowDownTrayIcon className="h-4 w-4" />
+          <span className="whitespace-nowrap">Download PDF</span>
+        </a>
+        <DocxButton fileName={fileName} />
+      </div>
     </div>
   );
 };
@@ -84,3 +95,18 @@ export const ResumeControlBarCSR = dynamic(
 export const ResumeControlBarBorder = () => (
   <div className="absolute bottom-[var(--resume-control-bar-height)] w-full border-t-2 bg-gray-50" />
 );
+
+const DocxButton = ({ fileName }: { fileName: string }) => {
+  const resume = useAppSelector(selectResume);
+  const settings = useAppSelector(selectSettings);
+  return (
+    <button
+      type="button"
+      className="ml-1 flex items-center gap-1 rounded-md border border-gray-300 px-3 py-1 hover:bg-gray-100"
+      onClick={() => downloadDocx(resume, settings, fileName)}
+    >
+      <ArrowDownTrayIcon className="h-4 w-4" />
+      <span className="whitespace-nowrap">Export Word (.docx)</span>
+    </button>
+  );
+};
