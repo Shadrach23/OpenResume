@@ -5,12 +5,12 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Shadrach23/OpenResume.git"
+    "url": "git+https://github.com/Shadrach23"
   },
   "bugs": {
-    "url": "https://github.com/Shadrach23/OpenResume/issues"
+    "url": "https://github.com/Shadrach23/issues"
   },
-  "homepage": "https://github.com/Shadrach23/OpenResume#readme",
+  "homepage": "https://github.com/Shadrach23#readme",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

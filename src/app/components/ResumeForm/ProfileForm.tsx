@@ -71,6 +71,7 @@ export const ProfileForm = () => {
             </button>
           </div>
           <Textarea
+            label="Summary"
             labelClassName="hidden"
             name="summary"
             placeholder="Entrepreneur and educator obsessed with making education free for anyone"

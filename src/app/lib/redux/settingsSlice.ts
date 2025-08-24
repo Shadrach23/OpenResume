@@ -1,4 +1,4 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction, type Draft } from "@reduxjs/toolkit";
 import type { RootState } from "lib/redux/store";
 
 export interface Settings {
@@ -33,10 +33,18 @@ export interface Settings {
 
 export type ShowForm = keyof Settings["formToShow"];
 export type FormWithBulletPoints = keyof Settings["showBulletPoints"];
-export type GeneralSetting = Exclude<
-  keyof Settings,
-  "formToShow" | "formToHeading" | "formsOrder" | "showBulletPoints"
->;
+type Alignment = 'left' | 'center' | 'right';
+
+type GeneralSettingValueMap = {
+  themeColor: string;
+  fontFamily: string;
+  fontSize: string;
+  documentSize: string;
+  headerAlign: Alignment;
+  sectionAlign: Alignment;
+};
+
+export type GeneralSetting = keyof GeneralSettingValueMap;
 
 export const DEFAULT_THEME_COLOR = "#38bdf8"; // sky-400
 export const DEFAULT_FONT_FAMILY = "Roboto";
@@ -77,12 +85,15 @@ export const settingsSlice = createSlice({
   name: "settings",
   initialState: initialSettings,
   reducers: {
-    changeSettings: (
-      draft,
-      action: PayloadAction<{ field: GeneralSetting; value: string }>
+    changeSettings: <K extends GeneralSetting>(
+      draft: Draft<Settings>,
+      action: PayloadAction<{
+        field: K;
+        value: GeneralSettingValueMap[K];
+      }>
     ) => {
       const { field, value } = action.payload;
-      draft[field] = value;
+      (draft[field] as Settings[K]) = value as any;
     },
     changeShowForm: (
       draft,

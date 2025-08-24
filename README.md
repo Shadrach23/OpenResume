@@ -50,19 +50,35 @@ OpenResume is created with the NextJS web framework and follows its project stru
 | / | /page.tsx | Home page that contains hero, auto typing resume, steps, testimonials, logo cloud, etc |
 | /resume-import | /resume-import/page.tsx | Resume import page, where you can choose to import data from an existing resume PDF. The main component used is `ResumeDropzone` (`/components/ResumeDropzone.tsx`) |
 | /resume-builder | /resume-builder/page.tsx | Resume builder page to build and download a resume PDF. The main components used are `ResumeForm` (`/components/ResumeForm`) and `Resume` (`/components/Resume`) |
-| /resume-parser | /resume-parser/page.tsx | Resume parser page to test a resume’s AST readability. The main library util used is `parseResumeFromPdf` (`/lib/parse-resume-from-pdf`) |
+| /resume-parser | /resume-parser/page.tsx | Resume parser page to test a resume’s AST readability. The main library util used is `parseResumeFromPdf` |
 
-## 💻 Local Development
+## 🚀 Getting Started
 
-### Method 1: npm
+### Recent Updates
 
-1. Download the repo `git clone https://github.com/Shadrach23/OpenResume.git`
+- **TypeScript Type Safety**: Enhanced type safety across the application with proper type definitions for Redux state management
+- **Code Quality**: Fixed TypeScript errors related to component props and state management
+- **Dependencies**: Updated package dependencies to their latest stable versions
+
+### Prerequisites
+
+- Node.js 18.17 or later
+- npm 9.6.7 or later
+
+### Installation
+
+#### Method 1: Local Development
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/Shadrach23/OpenResume.git
+```
 2. Change the directory `cd open-resume`
 3. Install the dependency `npm install`
 4. Start a development server `npm run dev`
 5. Open your browser and visit [http://localhost:3000](http://localhost:3000) to see OpenResume live
 
-### Method 2: Docker
+#### Method 2: Docker
 
 1. Download the repo `git clone https://github.com/Shadrach23/OpenResume.git`
 2. Change the directory `cd open-resume`
